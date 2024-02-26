@@ -20,9 +20,18 @@ public class Main {
         byte years = scanner.nextByte();
         int numberOfPayments = years * monthsInYear;
 
+        System.out.print("Yearly Property Tax: ");
+        double yearlyPropertyTax = scanner.nextDouble();
+        double monthlyPropertyTax = yearlyPropertyTax / monthsInYear;
+
+        System.out.print("Yearly Insurance Premium: ");
+        double yearlyInsurancePremium = scanner.nextDouble();
+        double monthlyInsurancePremium = yearlyInsurancePremium / monthsInYear;
+
         double mortgage = principal
                             * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)
-                            / (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1));
+                            / (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1))
+                            + monthlyPropertyTax + monthlyInsurancePremium;
 
         String mortgageFormatted = NumberFormat.getCurrencyInstance().format(mortgage);
         System.out.println("Mortgage: " + mortgageFormatted);
